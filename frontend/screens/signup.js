@@ -3,13 +3,50 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image } from "reac
 import { Input, NativeBaseProvider, Button, Icon } from "native-base";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
+// import ToastManager, { Toast } from "toastify-react-native";
 
 
-function Signup(){
+export default function Signup(){
     const navigation = useNavigation();
 
+    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const handleError = (err) => 
+        console.error(err);
+    
+    const handleSuccess = (msg) => 
+        console.success(msg);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const { data } = await axios.post(
+                "http://localhost:2999/signup",
+                {
+                    email: {email},
+                    username: {username},
+                    password: {password}
+                },
+                { withCredentials: true }
+            );
+            const { success, message } = data;
+            if (success) {
+                handleSuccess(message);
+                setTimeout(() => {
+                    navigation.navigate("/") }, 1000);
+            } else {
+                handleError(message);
+            }
+        } catch(err) {
+            console.log(err);
+        }
+    };
+
     return(
-        <View style={styles.container}>
+        <NativeBaseProvider>
+            <View style={styles.container}>
             <Text style={styles.appName}>DailyBite</Text>
 
             {/* Switch between Login and Register */}
@@ -23,10 +60,30 @@ function Signup(){
             </View>
 
             {/* User Name and Password Fields */}
+            <Text style={styles.inputHeader}>Email</Text>
+            <TextInput 
+                style={styles.input}
+                value={email}
+                onChange={ (e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+            />
+
             <Text style={styles.inputHeader}>Username</Text>
-            <TextInput style={styles.input} placeholder="Enter your User Name" />
+            <TextInput 
+                style={styles.input}
+                value= {username}
+                onChange={ (e) => setUsername(e.target.value)}
+                placeholder="Enter your User Name" 
+            />
+
             <Text style={styles.inputHeader}>Password</Text>
-            <TextInput style={styles.input} placeholder="Enter your Password" secureTextEntry={true} />
+            <TextInput 
+                style={styles.input}
+                value={password}
+                onChange={ (e) => setPassword(e.target.value)}
+                placeholder="Enter your Password" 
+                secureTextEntry={true} 
+            />
 
             {/*Remeber me and forgot password */}
             <View style={styles.rememberForgot}>
@@ -38,7 +95,7 @@ function Signup(){
             {/* Log In Button */}      
             <Button 
                 style={styles.buttonStyle}
-                onPress={() => {/* Handle Login */}}
+                onPress={handleSubmit}
             >
                 <Text style={styles.buttonText}>Register</Text>
             </Button>
@@ -74,18 +131,19 @@ function Signup(){
             </Button>
             </View>
         </View>
-    )
-}
-
-
-
-export default () => {
-    return(
-        <NativeBaseProvider>
-            <Login />
         </NativeBaseProvider>
     )
 }
+
+
+
+// export default () => {
+//     return(
+//         <NativeBaseProvider>
+//             <Login />
+//         </NativeBaseProvider>
+//     )
+// }
 
 const styles = StyleSheet.create({
     container: {

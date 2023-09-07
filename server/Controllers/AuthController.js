@@ -1,4 +1,5 @@
 const User = require("../Models/UserModel");
+const Guest = require("../Models/GuestModel");
 const { createSecretToken } = require("../util/SecretToken");
 const bcrypt = require("bcryptjs");
 
@@ -19,6 +20,7 @@ module.exports.Signup = async (req, res, next) => {
         res
             .status(201)
             .json({ message: "User signed in successfully", success: true, user });
+            console.log(`${username} has signed in Successfully`);
         next();    
     } catch(error) {
         console.error(error);
@@ -46,7 +48,27 @@ module.exports.Login = async (req, res, next) => {
             httpOnly: false,
       });
       res.status(201).json({ message: "User logged in successfully", success: true });
+      console.log(`${username} has logged in Successfully`);
       next();
+    } catch(err) {
+        console.error(err);
+    }
+}
+
+// Guest mode
+module.exports.GuestMode = async (req, res, next) => {
+    try {
+        const guest = new Guest();
+        const token = createSecretToken(guest._id);
+        res.cookie("token", token, {
+            withCredentials: true,
+            httpOnly: false,
+        });
+        res
+            .status(201)
+            .json({ message: "Guest signed in successfully", success: true, guest });
+        console.log("Succcessful Guest Sign In");
+        next();
     } catch(err) {
         console.error(err);
     }

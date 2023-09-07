@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { DailyBitesLogo } from "../assets/dailyBite.png";
 
 const LandingPage = ({ navigation }) => {
   const handleSwipe = () => {
@@ -9,7 +10,7 @@ const LandingPage = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image
-        source={require('./assets/dailyBite.png')}
+        source={ DailyBitesLogo }
         style={styles.appImage}
       />
       <TouchableOpacity onPress={handleSwipe}>
