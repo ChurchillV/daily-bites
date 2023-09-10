@@ -47,12 +47,14 @@ const SetLocation = () => {
           <TextInput 
             style={styles.input} 
             placeholder={'State'}
+            placeholderTextColor="gray"
             value={state.stateInput}
             onChangeText={handleStateInputChange}
            />
           <TextInput 
             style={styles.input} 
             placeholder={'City'} 
+            placeholderTextColor="gray"
             value={state.cityInput}
             onChangeText={handleCityInputChange}
           />        

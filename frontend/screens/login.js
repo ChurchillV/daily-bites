@@ -32,9 +32,18 @@ function Login(){
 
             {/* User Name and Password Fields */}
             <Text style={styles.inputHeader}>Username</Text>
-            <TextInput style={styles.input} placeholder="Enter your User Name" />
+            <TextInput 
+                style={styles.input} 
+                placeholder="Enter your User Name" 
+                placeholderTextColor="gray"
+            />
             <Text style={styles.inputHeader}>Password</Text>
-            <TextInput style={styles.input} placeholder="Enter your Password" secureTextEntry={true} />
+            <TextInput 
+                style={styles.input} 
+                placeholder="Enter your Password"
+                placeholderTextColor="gray" 
+                secureTextEntry={true} 
+            />
 
             {/*Remeber me and forgot password */}
             <View style={styles.rememberForgot}>
@@ -53,33 +62,42 @@ function Login(){
 
             {/* External login */}
             <View style={styles.externalLoginContainer}>
-            {/* Google */}
-            <Button 
-                style={styles.switchBar}
-                onPress={() => {/* Handle Login */}}
-            >
-                <View style={styles.buttonContent}>
-                    <Text style={styles.buttonText}>Join With Google</Text>
-                    <Image
-                    source={googleLogo}
-                    style={styles.buttonImage}
-                    />
-                </View>
-            </Button>
+                {/* Google */}
+                <Button 
+                    style={styles.switchBar}
+                    onPress={() => {/* Handle Login */}}
+                >
+                    <View style={styles.buttonContent}>
+                        <Text style={styles.buttonText}>Join With Google</Text>
+                        <Image
+                        source={googleLogo}
+                        style={styles.buttonImage}
+                        />
+                    </View>
+                </Button>
 
-            {/* Meta */}
-            <Button 
-                style={styles.switchBar}
-                onPress={() => {/* Handle Login */}}
-            >
-                <View style={styles.buttonContent}>
-                    <Text style={styles.buttonText}>Join With Meta</Text>
-                    <Image
-                    source={metaLogo}
-                    style={styles.buttonImage}
-                    />
-                </View>
-            </Button>
+                {/* Meta */}
+                <Button 
+                    style={styles.switchBar}
+                    onPress={() => {/* Handle Login */}}
+                >
+                    <View style={styles.buttonContent}>
+                        <Text style={styles.buttonText}>Join With Meta</Text>
+                        <Image
+                        source={metaLogo}
+                        style={styles.buttonImage}
+                        />
+                    </View>
+                </Button>
+                
+                <Button 
+                    style={styles.switchBar}
+                    onPress={() => {/* Handle Login */}}
+                >
+                    <View style={styles.buttonContent}>
+                        <Text style={styles.buttonText}>Log in as a guest</Text>
+                    </View>
+                </Button>
             </View>
         </View>
     )
