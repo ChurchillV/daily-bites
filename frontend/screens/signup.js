@@ -42,7 +42,7 @@ export default function Signup(){
             if (success) {
                 handleSuccess(message);
                 setTimeout(() => {
-                    navigation.navigate("/") }, 1000);
+                    navigation.navigate("Homepage") }, 1000);
             } else {
                 handleError(message);
             }
