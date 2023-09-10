@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Text, View, TextInput, Button, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, View, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 
 const SetLocation = () => {
   const [state, setState] = useState({
