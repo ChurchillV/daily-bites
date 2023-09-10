@@ -21,10 +21,10 @@ export default function Signup(){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const handleError = (err) => 
-        console.error(err);
+        console.log(err);
     
     const handleSuccess = (msg) => 
-        console.success(msg);
+        console.log(msg);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -32,11 +32,11 @@ export default function Signup(){
             const { data } = await axios.post(
                 "http://localhost:2999/signup",
                 {
-                    email: {email},
-                    username: {username},
-                    password: {password}
+                    email: email,
+                    username: username,
+                    password: password,
                 },
-                { withCredentials: true }
+
             );
             const { success, message } = data;
             if (success) {
@@ -50,6 +50,7 @@ export default function Signup(){
             console.log(err);
         }
     };
+
 
     return(
         <NativeBaseProvider>
