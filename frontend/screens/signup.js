@@ -52,6 +52,7 @@ export default function Signup(){
     };
 
 
+
     return(
         <NativeBaseProvider>
             <View style={styles.container}>
