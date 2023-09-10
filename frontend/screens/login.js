@@ -3,7 +3,10 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image } from "reac
 import { Input, NativeBaseProvider, Button, Icon } from "native-base";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import Signup from './signup'
+import Signup from './signup';
+
+const googleLogo = require('../assets/googleLogo.png')
+const metaLogo = require('../assets/metaLogo.png')
 
 function Login(){
     const navigation = useNavigation();
@@ -57,10 +60,10 @@ function Login(){
             >
                 <View style={styles.buttonContent}>
                     <Text style={styles.buttonText}>Join With Google</Text>
-                    {/* <Image
-                    source={myImage}
+                    <Image
+                    source={googleLogo}
                     style={styles.buttonImage}
-                    /> */}
+                    />
                 </View>
             </Button>
 
@@ -69,12 +72,12 @@ function Login(){
                 style={styles.switchBar}
                 onPress={() => {/* Handle Login */}}
             >
-                <View>
+                <View style={styles.buttonContent}>
                     <Text style={styles.buttonText}>Join With Meta</Text>
-                    {/* <Image
-                    source={myImage}
+                    <Image
+                    source={metaLogo}
                     style={styles.buttonImage}
-                    /> */}
+                    />
                 </View>
             </Button>
             </View>

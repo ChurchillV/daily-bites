@@ -7,6 +7,8 @@ import Login from './login'
 import axios from "axios";
 // import ToastManager, { Toast } from "toastify-react-native";
 
+const googleLogo = require('../assets/googleLogo.png')
+const metaLogo = require('../assets/metaLogo.png')
 
 export default function Signup(){
     const navigation = useNavigation();
@@ -111,10 +113,10 @@ export default function Signup(){
             >
                 <View style={styles.buttonContent}>
                     <Text style={styles.buttonText}>Join With Google</Text>
-                    {/* <Image
-                    source={myImage}
+                    <Image
+                    source={googleLogo}
                     style={styles.buttonImage}
-                    /> */}
+                    /> 
                 </View>
             </Button>
 
@@ -123,12 +125,12 @@ export default function Signup(){
                 style={styles.switchBar}
                 onPress={() => {/* Handle Login */}}
             >
-                <View>
+                <View style={styles.buttonContent}>
                     <Text style={styles.buttonText}>Join With Meta</Text>
-                    {/* <Image
-                    source={myImage}
+                    <Image
+                    source={metaLogo}
                     style={styles.buttonImage}
-                    /> */}
+                    /> 
                 </View>
             </Button>
             </View>
@@ -182,6 +184,10 @@ const styles = StyleSheet.create({
         padding: 10,
         fontSize: 14
     },
+    buttonContent:{
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
     buttonStyle: {
         fontSize: 20,
         width: '70%',
@@ -212,6 +218,6 @@ const styles = StyleSheet.create({
     buttonImage: {
         width: 24, 
         height: 24, 
-        marginLeft: 10, 
+        marginLeft: 20, 
     },
 })
