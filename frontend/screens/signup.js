@@ -77,6 +77,7 @@ export default function Signup(){
                 value={email}
                 onChange={ (e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
+                placeholderTextColor="gray"
             />
 
             <Text style={styles.inputHeader}>Username</Text>
@@ -84,7 +85,8 @@ export default function Signup(){
                 style={styles.input}
                 value= {username}
                 onChange={ (e) => setUsername(e.target.value)}
-                placeholder="Enter your User Name" 
+                placeholder="Enter your User Name"
+                placeholderTextColor="gray" 
             />
 
             <Text style={styles.inputHeader}>Password</Text>
@@ -93,6 +95,7 @@ export default function Signup(){
                 value={password}
                 onChange={ (e) => setPassword(e.target.value)}
                 placeholder="Enter your Password" 
+                placeholderTextColor="gray"
                 secureTextEntry={true} 
             />
 
