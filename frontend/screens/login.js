@@ -4,6 +4,7 @@ import { Input, NativeBaseProvider, Button, Icon } from "native-base";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import Signup from './signup';
+import axios from "axios";
 
 const googleLogo = require('../assets/googleLogo.png')
 const metaLogo = require('../assets/metaLogo.png')
@@ -15,6 +16,52 @@ function Login(){
         navigation.navigate('Signup');
     }    
 
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSuccess = (msg) => 
+        console.log(msg);
+    
+    const handleError = (err) => 
+        console.log(err);
+    
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            const { data } = await axios.post(
+                "http://localhost:2999/login",
+                {
+                    username: username,
+                    password: password,
+                },
+            );
+            const { success, message } = data;
+            if (success) {
+                handleSuccess(message);
+                setTimeout(() => {
+                    navigation.navigate("Homepage") }, 1000);
+            } else {
+                handleError(message);
+            }
+        } catch(err) {
+            console.log(err);
+        }
+    }
+
+    const handleGuestLogin = async (e) => {
+        e.preventDefault();
+        try {
+            const { data } = await axios.post("http://localhost:2999/guest");
+            const { success, message } = data;
+            if (success) {
+                handleSuccess(message);
+            } else {
+                handleError(message);
+            }
+        } catch(err) {
+            console.log(err);
+        }
+    }
     return(
         <View style={styles.container}>
             <Text style={styles.appName}>DailyBite</Text>
@@ -33,12 +80,14 @@ function Login(){
             {/* User Name and Password Fields */}
             <Text style={styles.inputHeader}>Username</Text>
             <TextInput 
+                onChange={ (e) => setUsername(e.target.value)}
                 style={styles.input} 
                 placeholder="Enter your User Name" 
                 placeholderTextColor="gray"
             />
             <Text style={styles.inputHeader}>Password</Text>
             <TextInput 
+                onChange={ (e) => setPassword(e.target.value)}
                 style={styles.input} 
                 placeholder="Enter your Password"
                 placeholderTextColor="gray" 
@@ -55,7 +104,7 @@ function Login(){
             {/* Log In Button */}      
             <Button 
                 style={styles.buttonStyle}
-                onPress={() => {/* Handle Login */}}
+                onPress={handleLogin}
             >
                 <Text style={styles.buttonText}>Login</Text>
             </Button>
@@ -92,7 +141,7 @@ function Login(){
                 
                 <Button 
                     style={styles.switchBar}
-                    onPress={() => {/* Handle Login */}}
+                    onPress={handleGuestLogin}
                 >
                     <View style={styles.buttonContent}>
                         <Text style={styles.buttonText}>Log in as a guest</Text>
