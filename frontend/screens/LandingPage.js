@@ -1,18 +1,22 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { DailyBitesLogo } from "../assets/dailyBite.png";
+import { useNavigation } from "@react-navigation/native";
 
-const LandingPage = ({ navigation }) => {
+const DailyBiteLogo = require('../assets/dailyBite.png')
+
+const LandingPage = () => {
+  const navigation = useNavigation();
+
   const handleSwipe = () => {
-    alert('Navigate to Login/Sign-up Page');
+    navigation.navigate('Login');
   };
 
   return (
     <View style={styles.container}>
       <Image
-        source={ DailyBitesLogo }
-        style={styles.appImage}
-      />
+          source={DailyBiteLogo}
+          style={styles.appImage}
+        />
       <TouchableOpacity onPress={handleSwipe}>
         <Text style={styles.swipeText}>Swipe &gt;&gt;&gt;</Text>
       </TouchableOpacity>
@@ -28,7 +32,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 200,
-    
+    backgroundColor: '#ffffff'
   },
 
   appImage: {

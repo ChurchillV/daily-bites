@@ -3,9 +3,14 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image } from "reac
 import { Input, NativeBaseProvider, Button, Icon } from "native-base";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import Signup from './signup'
 
 function Login(){
     const navigation = useNavigation();
+
+    const handleRegisterPress = () => {
+        navigation.navigate('Signup');
+    }    
 
     return(
         <View style={styles.container}>
@@ -16,7 +21,8 @@ function Login(){
                 <Text style={[styles.switchBarItem, styles.activeSwitch]}>Login</Text>
                 <Text 
                     style={styles.switchBarItem} 
-                    /*code to navigate to register page*/>
+                    onPress={handleRegisterPress}
+                >
                     Register
                 </Text>
             </View>

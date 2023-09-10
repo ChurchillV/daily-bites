@@ -3,12 +3,17 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image } from "reac
 import { Input, NativeBaseProvider, Button, Icon } from "native-base";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import Login from './login'
 import axios from "axios";
 // import ToastManager, { Toast } from "toastify-react-native";
 
 
 export default function Signup(){
     const navigation = useNavigation();
+
+    const handleLoginPress = () => {
+        navigation.navigate('Login');
+    }
 
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
@@ -51,7 +56,11 @@ export default function Signup(){
 
             {/* Switch between Login and Register */}
             <View style={styles.switchBar}>
-                <Text style={styles.switchBarItem}>Login</Text>
+                <Text 
+                 style={styles.switchBarItem}
+                 onPress={handleLoginPress}
+                >
+                    Login</Text>
                 <Text 
                     style={[styles.switchBarItem, styles.activeSwitch]} 
                     /*code to navigate to register page*/>
@@ -84,13 +93,6 @@ export default function Signup(){
                 placeholder="Enter your Password" 
                 secureTextEntry={true} 
             />
-
-            {/*Remeber me and forgot password */}
-            <View style={styles.rememberForgot}>
-                {/*Remember Me Checkbox*/}
-                <Text style={styles.forgotPassword}>Remember me</Text>
-                <Text style={styles.forgotPassword}>Forgot Password</Text>
-            </View>
 
             {/* Log In Button */}      
             <Button 
@@ -136,15 +138,6 @@ export default function Signup(){
 }
 
 
-
-// export default () => {
-//     return(
-//         <NativeBaseProvider>
-//             <Login />
-//         </NativeBaseProvider>
-//     )
-// }
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -189,35 +182,10 @@ const styles = StyleSheet.create({
         padding: 10,
         fontSize: 14
     },
-    rememberMeContainer: {
-        flexDirection: 'row',
-        alignItems: 'left',
-    },
-    checkBoxContainer: {
-        backgroundColor: 'transparent', // No background color for the checkbox container
-        borderWidth: 0, // No border
-        paddingHorizontal: 0, // No padding
-    },
-    checkBoxText: {
-        fontWeight: 'light',
-    },
-    rememberForgot: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '100%',
-        marginBottom: 10,
-        paddingHorizontal: 20, 
-    },
-      rememberMe: {
-        
-    },
-      forgotPassword: {
-        marginVertical: 18,
-        flexDirection: 'row',
-    },
     buttonStyle: {
         fontSize: 20,
         width: '70%',
+        marginTop: 20,
         padding: 10,
         backgroundColor: '#49BBBD',
         borderRadius: 100,
