@@ -55,6 +55,8 @@ function Login(){
             const { success, message } = data;
             if (success) {
                 handleSuccess(message);
+                setTimeout(() => {
+                    navigation.navigate("Homepage") }, 1000);
             } else {
                 handleError(message);
             }
